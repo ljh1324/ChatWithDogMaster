@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css?family=PT+Sans');
+
+header h1 {
+    color: black;
+    text-align: center;
+    display: inline;
+    margin: 100px;
+    align="center";
+    font-family: 'PT Sans', sans-serif;
+}
+
+.line {
+    color: darkgrey
+}
+
+.chat {
+    width:100%;
+}
+
+.chat-box {
+	margin: 30px;
+	font-size: 20px;
+}
+
+.chat-box li{
+    border:solid 2px;
+    list-style:none;
+    color:white;
+    padding: 7px;
+    margin: 7px;
+}
+
+.chat-box li:nth-child(2n){
+    clear:both;
+    float:right;
+    background:mediumspringgreen;
+}
+.chat-box li:nth-child(2n-1) {
+    clear:both;
+    float:left;
+    background:mediumturquoise;
+}
+
+.chat-input {
+    text-align:right;
+	clear:both;
+}

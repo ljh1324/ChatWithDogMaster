@@ -1,0 +1,47 @@
+{% load staticfiles %}
+
+<html>
+    <head>
+        <title>ChatWithDogMaster</title>
+        <link rel="stylesheet" href="{% static 'css/chatting.css' %}">
+    </head>
+    <body style="background: url('{% static 'bone.png' %}')">
+        <script type="text/javascript" src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/chat.js' %}"></script>
+
+        <header><h1>Chat With Dog Master</h1><img src="{% static 'img/dog2.png' %}"></header><hr class="line">
+        <article class="chat-box">
+            <ul>
+            </ul>
+        </article>
+        <footer class="chat-input">
+            <form name='chat-form' method="POST" action="/chatting/">
+                {% csrf_token %}
+                <input type="text" id="chat-input" name="query" value="">
+                <input type="image" id="chat-button" value="Submit" src="{% static 'img/dog_foot.png' %}"/>
+            </form>
+        </footer>
+
+        <script type="text/javascript">
+            jQuery(document).ready(function() {
+            jQuery("#chat-button").on('click', function() {
+                    var input_string = $("input#chat-input").val();
+                    addText(input_string)
+                    jQuery.ajax({
+                            type: "POST",
+                            data: {query : input_string,
+                                   csrfmiddlewaretoken: '{{ csrf_token }}'
+                            },
+                            success: function(data) {
+                                var response = data.response;
+                                addText(response);
+                                document.body.scrollTop = document.body.scrollHeight;
+                            },
+                            });
+                    return false;
+                    }
+                    );
+            });
+        </script>
+    </body>
+</html>
